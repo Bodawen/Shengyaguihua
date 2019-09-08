@@ -6,13 +6,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import static sun.misc.Version.print;
-
 public class DB_basic_handle {
 
     static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
     static final String URL = "jdbc:mysql://localhost:3306/";
-    static final String DB = "tweet";
+    static final String DB = "";
     static final String Character ="?useSSL=false&serverTimezone=UTC";
     static final String USER = "root";
     static final String PASS = "";
@@ -155,6 +153,7 @@ public class DB_basic_handle {
         List<Map> list= new ArrayList<Map>();
         int count;
         try {
+            System.out.println(sql);
             rs = statement.executeQuery(sql);
             ResultSetMetaData rsmd;
             rsmd = rs.getMetaData();

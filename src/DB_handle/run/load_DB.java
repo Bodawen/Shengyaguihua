@@ -11,17 +11,24 @@ import java.util.*;
 public class load_DB {
     public static void main(String arg[]){
         load_DB ld= new load_DB();
-//        ld.createunitables("/Users/wenboda/git/Shengyaguihua/src/resource/csv/uni_info");
-//        ld.load_uni_info("/Users/wenboda/git/Shengyaguihua/src/resource/csv/uni_info");
-        ld.createscoretables("/Users/wenboda/git/Shengyaguihua/src/resource/csv/score");
-        ld.load_score_info("/Users/wenboda/git/Shengyaguihua/src/resource/csv/score");
+        ld.createDB();
+        ld.createunitables("D:\\workspace\\java_projects\\Shengyaguihua\\src\\resource\\csv\\uni_info");
+        ld.load_uni_info("D:\\workspace\\java_projects\\Shengyaguihua\\src\\resource\\csv\\uni_info");
+        ld.createscoretables("D:\\workspace\\java_projects\\Shengyaguihua\\src\\resource\\csv\\score");
+        ld.load_score_info("D:\\workspace\\java_projects\\Shengyaguihua\\src\\resource\\csv\\score");
     }
-
+    String name = "Career_Planning";
+    public void createDB(){
+        DB_basic_handle DBbasichandle = DB_basic_handle.getInstance();
+        DBbasichandle.connDB();
+        DBbasichandle.createDB(name);
+        DBbasichandle.closeDB();
+    }
     public void createscoretables(String path){
         File[] files = new File(path).listFiles();
         DB_basic_handle DBbasichandle = DB_basic_handle.getInstance();
         DBbasichandle.connDB();
-        DBbasichandle.usedatabase("Career_Planning");
+        DBbasichandle.usedatabase(name);
         for (File f :
                 files) {
             String name = f.getName();
@@ -31,8 +38,8 @@ public class load_DB {
             name = name.substring(0,name.lastIndexOf("."));
 
             Map<String, String> map = new HashMap<>();
-            map.put("socre", "INT");
-            map.put("nubmer", "INT");
+            map.put("score", "INT");
+            map.put("number", "INT");
             map.put("count_number", "INT");
             DBbasichandle.createTable(name, map);
         }
@@ -42,8 +49,8 @@ public class load_DB {
         File[] files = new File(path).listFiles();
         DB_basic_handle DBbasichandle = DB_basic_handle.getInstance();
         DBbasichandle.connDB();
-        DBbasichandle.usedatabase("Career_Planning");
-        String[] elements = {"socre&INT","nubmer&INT","count_number&INT"};
+        DBbasichandle.usedatabase(name);
+        String[] elements = {"score&INT","number&INT","count_number&INT"};
         for (File f :
                 files) {
             String name = f.getName();
@@ -84,7 +91,7 @@ public class load_DB {
         File[] files = new File(path).listFiles();
         DB_basic_handle DBbasichandle = DB_basic_handle.getInstance();
         DBbasichandle.connDB();
-        DBbasichandle.usedatabase("Career_Planning");
+        DBbasichandle.usedatabase(name);
         for (File f :
                 files) {
             String name = f.getName();
@@ -110,7 +117,7 @@ public class load_DB {
         File[] files = new File(path).listFiles();
         DB_basic_handle DBbasichandle = DB_basic_handle.getInstance();
         DBbasichandle.connDB();
-        DBbasichandle.usedatabase("Career_Planning");
+        DBbasichandle.usedatabase(name);
         String[] elements = {"uniId&VARCHAR","name&VARCHAR","province&VARCHAR","max_score&INT","min_score&INT","high_position&INT","low_position&INT","number&INT"};
         for (File f :
                 files) {
