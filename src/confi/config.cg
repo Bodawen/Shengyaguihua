@@ -1,0 +1,6 @@
+Database:Career_Planning
+JDBC_DRIVER = "com.mysql.jdbc.Driver";
+URL = "jdbc:mysql://localhost:3306/";
+Character ="?useSSL=false&serverTimezone=UTC";
+USER = "root";
+PASS = "";
